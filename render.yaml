@@ -1,11 +1,11 @@
 services:
   - type: web
     name: kitchensync-api
-    env: node
+    runtime: node
     buildCommand: cd backend && npm install
     startCommand: cd backend && node src/app.js
     envVars:
-      - key: MONGODB_URI
+      - key: FIREBASE_SERVICE_ACCOUNT
         sync: false
       - key: OPENAI_API_KEY
         sync: false
