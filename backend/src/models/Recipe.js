@@ -1,28 +1,32 @@
-const mongoose = require('mongoose');
+const { db } = require('../config/firebase');
 
-const recipeSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  url: String,
-  description: String,
-  ingredients: [{
-    type: String,
-    required: true
-  }],
-  instructions: [{
-    type: String,
-    required: true
-  }],
-  prep_time: String,
-  cook_time: String,
-  total_time: String,
-  servings: String,
-  cuisine: [String],
-  category: [String],
-  author: String,
-  date_published: Date
-});
+const COLLECTION_NAME = 'recipes';
 
-module.exports = mongoose.model('Recipe', recipeSchema); 
+class Recipe {
+  static async find() {
+    const snapshot = await db.collection(COLLECTION_NAME).get();
+    return snapshot.docs.map(doc => ({
+      _id: doc.id,
+      ...doc.data()
+    }));
+  }
+
+  static async create(recipe) {
+    const docRef = await db.collection(COLLECTION_NAME).add(recipe);
+    return {
+      _id: docRef.id,
+      ...recipe
+    };
+  }
+
+  static async findById(id) {
+    const doc = await db.collection(COLLECTION_NAME).doc(id).get();
+    if (!doc.exists) return null;
+    return {
+      _id: doc.id,
+      ...doc.data()
+    };
+  }
+}
+
+module.exports = Recipe; 
