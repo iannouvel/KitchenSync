@@ -1,5 +1,16 @@
 {
-  "name": "kitchensync",
+  "name": "kitchensync-frontend",
   "homepage": "https://iannouvel.github.io/KitchenSync",
-  ...
+  "dependencies": {
+    // ... existing dependencies
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+    // ... other dev dependencies
+  },
+  "scripts": {
+    // ... existing scripts
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
 } 

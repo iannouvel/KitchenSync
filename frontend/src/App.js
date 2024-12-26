@@ -8,12 +8,18 @@ function App() {
 
   useEffect(() => {
     fetch('https://kitchensync-api.onrender.com/api/recipes')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(data => {
         setRecipes(data);
         setLoading(false);
       })
       .catch(err => {
+        console.error('Error fetching recipes:', err);
         setError('Failed to fetch recipes');
         setLoading(false);
       });

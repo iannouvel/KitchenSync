@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com']
+    ? ['https://iannouvel.github.io']
     : ['http://localhost:3000']
 }));
 app.use(express.json());
