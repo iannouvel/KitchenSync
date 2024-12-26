@@ -1,23 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 require('dotenv').config();
 
 const recipesRouter = require('./routes/recipes');
+const { db } = require('./config/firebase');
 
 const app = express();
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] // Update this with your frontend domain
+    ? ['https://your-frontend-domain.com']
     : ['http://localhost:3000']
 }));
 app.use(express.json());
-
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
 app.use('/api/recipes', recipesRouter);
