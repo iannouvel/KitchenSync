@@ -7,7 +7,11 @@ const recipesRouter = require('./routes/recipes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://your-frontend-domain.com'] // Update this with your frontend domain
+    : ['http://localhost:3000']
+}));
 app.use(express.json());
 
 // Connect to MongoDB
