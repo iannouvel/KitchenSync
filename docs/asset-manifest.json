@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/KitchenSync/static/css/main.f00872b8.css",
+    "main.js": "/KitchenSync/static/js/main.1af3dea9.js",
+    "index.html": "/KitchenSync/index.html",
+    "main.f00872b8.css.map": "/KitchenSync/static/css/main.f00872b8.css.map",
+    "main.1af3dea9.js.map": "/KitchenSync/static/js/main.1af3dea9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f00872b8.css",
+    "static/js/main.1af3dea9.js"
+  ]
+}
